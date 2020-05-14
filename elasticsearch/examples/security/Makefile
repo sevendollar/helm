@@ -9,7 +9,7 @@ install:
 	helm upgrade --wait --timeout=600s --install --values ./security.yml $(RELEASE) ../../
 
 purge:
-	kubectl delete secrets elastic-credentials elastic-certificates elastic-certificate-pem elastic-certificate-ca-pem elastic-certificate-cert-pem elastic-certificate-key-pem || true
+	kubectl delete secrets elastic-credentials elastic-certificates elastic-certificate-pem elastic-certificate-ca-pem elastic-certificate-cert-pem elastic-certificate-key-pem elastic-tls-certificates || true
 	helm del $(RELEASE)
 
 test: secrets install goss
