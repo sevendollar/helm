@@ -166,8 +166,9 @@ transportPort: 9300
 service:
   labels: {}
   labelsHeadless: {}
-  type: ClusterIP
-  nodePort: ""
+  # type: ClusterIP
+  type: NodePort
+  nodePort: "32198"
   annotations: {}
   httpPortName: http
   transportPortName: transport
@@ -224,7 +225,7 @@ tolerations: []
 # Enabling this will publically expose your Elasticsearch instance.
 # Only enable this if you have security enabled on your cluster
 ingress:
-  enabled: true
+  enabled: false
   annotations: {}
     # kubernetes.io/ingress.class: nginx
     # kubernetes.io/tls-acme: "true"

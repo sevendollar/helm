@@ -1,8 +1,8 @@
-default: test
+default: secrets install
 
 include ../../../helpers/examples.mk
 
-RELEASE := helm-es-security
+RELEASE := helm-civilgroup-es
 ELASTICSEARCH_IMAGE := docker.elastic.co/elasticsearch/elasticsearch:$(STACK_VERSION)
 
 install:
@@ -25,7 +25,7 @@ secrets:
 		$(ELASTICSEARCH_IMAGE) \
 		/bin/sh -c " \
 			elasticsearch-certutil ca --out /app/elastic-stack-ca.p12 --pass '' && \
-			elasticsearch-certutil cert --name security-master --dns es.hello.local,kibana.hello.local,security-master,helm-kibana-security-kibana --ca /app/elastic-stack-ca.p12 --pass '' --ca-pass '' --out /app/elastic-certificates.p12" && \
+			elasticsearch-certutil cert --name security-master --dns civilGroup-master,es.hello.local,kibana.hello.local,security-master,helm-kibana-security-kibana --ca /app/elastic-stack-ca.p12 --pass '' --ca-pass '' --out /app/elastic-certificates.p12" && \
 	docker cp elastic-helm-charts-certs:/app/elastic-certificates.p12 ./ && \
 	docker rm -f elastic-helm-charts-certs && \
 	openssl pkcs12 -nodes -passin pass:'' -in elastic-certificates.p12 -out elastic-certificate.pem && \
