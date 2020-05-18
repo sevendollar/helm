@@ -1,7 +1,7 @@
-default: test
+default: secrets install
 include ../../../helpers/examples.mk
 
-RELEASE := helm-kibana-security
+RELEASE := helm-civilgroup-kibana
 
 install:
 	helm upgrade --wait --timeout=600s --install --values ./security.yml $(RELEASE) ../../
